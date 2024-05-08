@@ -40,3 +40,26 @@
    font-family: robotic;
    font-weight: bold;
 }
+
+.overlay01 {
+    position: fixed;
+    top: 10px;
+    right:50%;
+    z-index: 10000;
+}
+
+.admin{
+    color: rgb(255, 255, 255);
+    position: absolute;
+    /* top: 10px; */
+    font-size: 27px;
+    top: 5%;
+    right:50%;
+    z-index: 10000;
+    /* transform: translateX(-50%); */
+    overflow: hidden;
+}
+
+#btn0001:hover {
+    background-color: none;
+}

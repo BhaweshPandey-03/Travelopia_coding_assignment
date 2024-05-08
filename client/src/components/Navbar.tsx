@@ -49,7 +49,7 @@ export default function Navbar(props: Props) {
         Navigate("/home")
         return;
     } else {
-       return;
+       return
     }
   }
 

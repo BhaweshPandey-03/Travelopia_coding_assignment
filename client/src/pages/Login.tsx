@@ -27,7 +27,7 @@ const Login: React.FC = () => {
     setOpen(false);
   };
 
-  const URL = 'https://travelopia-coding-assignment-2.onrender.com'; 
+  const URL = 'https://travelopia-coding-assignment-3.onrender.com'; 
   // const URL = 'http://localhost:4500'; 
   const [userInfo, setUserInfo] = useState<UserInfo>({
     username: '',

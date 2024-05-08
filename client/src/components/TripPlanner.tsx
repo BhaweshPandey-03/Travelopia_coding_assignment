@@ -4,7 +4,7 @@ import axios from 'axios';
 // import dotenv from 'dotenv';
 // dotenv.config();
 const TripPlanner: React.FC = () => {
-  const URL = 'https://travelopia-coding-assignment-2.onrender.com'; 
+  const URL = 'https://travelopia-coding-assignment-3.onrender.com'; 
   // const URL = 'http://localhost:4500';
   const [tripDetails, setTripDetails] = useState({
     destination: '',

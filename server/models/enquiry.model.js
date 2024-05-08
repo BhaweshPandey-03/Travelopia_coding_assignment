@@ -11,7 +11,8 @@ const enquirySchema = new mongoose.Schema({
   duration: { type: String, required: true },
   date: { type: String, required: true },
   notes: { type: String },
-  userId: { type: String }
+  userId: { type: String },
+  status: { type: String, enum: ['pending', 'taken'], default: 'pending' },
 }, { timestamps: true, versionKey: false });
 
 const enquiryModel = mongoose.model('enquirie', enquirySchema);

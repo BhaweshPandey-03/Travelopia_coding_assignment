@@ -13,12 +13,36 @@ enquiryRouter.post("/enquiry", auth, access("user"), async (req, res) => {
         }
         const username = user.username;
         console.log(username);
-        const enquiryData = { ...req.body, username: username, userId: req.user._id };
+        const enquiryData = { ...req.body, username: username, userId: req.user._id, status: pending };
         const newEnquiry = new enquiryModel(enquiryData);
         await newEnquiry.save();
         res.status(201).json({ message: "Enquiry submitted successfully." });
     } catch (error) {
         console.error("Error submitting enquiry:", error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
+// Update enquiry status
+enquiryRouter.put("/enquiry/:id/status", auth, access("user"), async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+        // Find the enquiry by id
+        const enquiry = await enquiryModel.findById(id);
+
+        // Check if enquiry exists
+        if (!enquiry) {
+            return res.status(404).json({ message: "Enquiry not found" });
+        }
+
+        // Update the status of the enquiry
+        enquiry.status = status;
+        await enquiry.save();
+
+        res.status(200).json({ message: "Enquiry status updated successfully" });
+    } catch (error) {
+        console.error("Error updating enquiry status:", error);
         res.status(500).json({ message: "Internal Server Error" });
     }
 });
