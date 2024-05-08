@@ -2,7 +2,6 @@ import { FaFacebook, FaTelegram, FaYoutube, FaTwitter, FaInstagram } from 'react
 import google from "../assets/pngwing1.com.png";
 import apple from "../assets/pngwing.com.png";
 import "../styles/footer.css"
-import React from 'react';
 function Footer() {
     return (
         <div className='footer'>

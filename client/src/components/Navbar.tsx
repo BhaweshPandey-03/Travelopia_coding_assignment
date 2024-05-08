@@ -13,7 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   /**
@@ -36,7 +36,7 @@ export default function Navbar(props: Props) {
 
   const handleNavbarClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, item: string ) => {
     if (item === 'Login') {
-        console.log("login");
+        console.log("login", event);
         Navigate('/login')
         
     } else if(item === 'About') {

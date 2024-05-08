@@ -108,7 +108,9 @@ const TripPlanner: React.FC = () => {
         <form className="formTP" onSubmit={handleTripPreferencesSubmit}>
           <input type="number" placeholder="Duration (days)" name="duration" value={tripPreferences.duration} onChange={handleTripPreferencesChange} min="1" required />
           <input type="date" placeholder="When?" name="date" value={tripPreferences.date} onChange={handleTripPreferencesChange} min={getCurrentDate()} required />
-          <textarea placeholder="Any Notes or Special Requests?" name="notes" value={tripPreferences.notes} onChange={handleTripPreferencesChange}></textarea>
+          <textarea placeholder="Any Notes or Special Requests?" name="notes" value={tripPreferences.notes} 
+          // onChange={handleTripPreferencesChange}
+          ></textarea>
           <button type="submit" className="btn">Let's Go</button>
         </form>
       </div>
