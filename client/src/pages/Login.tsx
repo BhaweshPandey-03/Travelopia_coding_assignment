@@ -33,6 +33,9 @@ const Login: React.FC = () => {
         console.log(res);
         if(res){
           setIsSignUp(false);
+          alert('Sign up successful');
+        }else {
+          alert('Sign up failed');
         }
         console.log('User signed up:', userInfo);
       } else {
@@ -47,8 +50,10 @@ const Login: React.FC = () => {
           localStorage.setItem('isAuth', 'true');
           Navigate("/home");
           console.log('Login successful');
+          alert('Login successful');
 
         } else {
+          alert('Login failed, Try Again');
           console.log('Invalid credentials');
         }
       }

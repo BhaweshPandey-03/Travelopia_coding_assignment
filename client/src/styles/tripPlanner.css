@@ -25,7 +25,8 @@
   
   .formTP select,
   .formTP input[type='number'],
-  .formTP input[type='date'] {
+  .formTP input[type='date'] ,
+  .formTP input[type='text'] {
     height: 38px;
     width: 20%;
     padding: 8px;

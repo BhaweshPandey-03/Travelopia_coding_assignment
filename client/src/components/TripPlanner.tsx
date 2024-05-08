@@ -5,12 +5,12 @@ const TripPlanner: React.FC = () => {
   const [tripDetails, setTripDetails] = useState({
     destination: '',
     interest: '',
-    travelers: 1,
+    travelers: '',
     budget: 0,
   });
 
   const [tripPreferences, setTripPreferences] = useState({
-    duration: 1,
+    duration: '',
     date: '',
     notes: '',
   });
@@ -46,11 +46,16 @@ const TripPlanner: React.FC = () => {
       [name]: value,
     }));
   };
-
+  
   const handleTripPreferencesSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Handle submitting trip preferences
+    alert("Trip Preferences Submitted");
+    setTripPreferences({ duration: '', date: '', notes: '' });
+    setTripDetails({ destination: '', interest: '', travelers: '', budget: 0 });
+    setTripDetailsSubmitted(false);
     console.log('Trip Preferences Submitted:', tripPreferences);
+
   };
 
   return (
@@ -106,9 +111,10 @@ const TripPlanner: React.FC = () => {
       <div className="form-section">
         {/* <h2>Section 2: Trip Preferences</h2> */}
         <form className="formTP" onSubmit={handleTripPreferencesSubmit}>
-          <input type="number" placeholder="Duration (days)" name="duration" value={tripPreferences.duration} onChange={handleTripPreferencesChange} min="1" required />
+          <input type="Text" placeholder="Duration (days)" name="duration" value={tripPreferences.duration} onChange={handleTripPreferencesChange}  required />
           <input type="date" placeholder="When?" name="date" value={tripPreferences.date} onChange={handleTripPreferencesChange} min={getCurrentDate()} required />
-          <textarea placeholder="Any Notes or Special Requests?" name="notes" value={tripPreferences.notes} 
+          <textarea placeholder="Any Notes or Special Requests?" name="notes"
+          //  value={tripPreferences.notes} 
           // onChange={handleTripPreferencesChange}
           ></textarea>
           <button type="submit" className="btn">Let's Go</button>
