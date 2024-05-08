@@ -8,8 +8,25 @@ interface UserInfo {
   email: string;
   password: string;
 }
+// import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const Login: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const URL = 'https://tourminder.onrender.com'; 
   const [userInfo, setUserInfo] = useState<UserInfo>({
     username: '',
@@ -33,7 +50,7 @@ const Login: React.FC = () => {
         console.log(res);
         if(res){
           setIsSignUp(false);
-          alert('Sign up successful');
+          handleClick();
         }else {
           alert('Sign up failed');
         }
@@ -47,16 +64,22 @@ const Login: React.FC = () => {
         const data = response.data;
         console.log(data);
         if (data) {
+          handleClick();
           localStorage.setItem('isAuth', 'true');
-          Navigate("/home");
+          setInterval(() => {
+            Navigate("/home");
+          },1000)
           console.log('Login successful');
-          alert('Login successful');
 
         } else {
           alert('Login failed, Try Again');
           console.log('Invalid credentials');
         }
       }
+
+      setInterval(() => {
+        setOpen(false)
+      },2000)
     } catch (error) {
       console.error('Error:', error);
     }
@@ -100,16 +123,39 @@ const Login: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <button type="submit">{isSignUp ? 'Sign up' : 'Log in'}</button>
+          <button  type="submit">{isSignUp ? 'Sign up' : 'Log in'}</button>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+         {isSignUp ? 'Sign up' : 'Log in'}Successfull!!
+        </Alert>
+      </Snackbar>
+      {/* <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
+        <Alert
+          onClose={handleClose2}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+         log In Successfull!!
+        </Alert>
+      </Snackbar> */}
         </div>
       </form>
       <p>
         {isSignUp
           ? 'Already have an account?'
           : 'Don\'t have an account yet?'}
-        <button onClick={() => setIsSignUp(!isSignUp)}>
+        <button  onClick={() =>{
+        
+          setIsSignUp(!isSignUp)}}>
           {isSignUp ? 'Log in' : 'Sign up'}
         </button>
+       
       </p>
     </div>
    </div>
