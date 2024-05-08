@@ -27,7 +27,8 @@ const Login: React.FC = () => {
     setOpen(false);
   };
 
-  const URL = 'https://tourminder.onrender.com'; 
+  // const URL = 'https://tourminder.onrender.com'; 
+  const URL = 'http://localhost:4500'; 
   const [userInfo, setUserInfo] = useState<UserInfo>({
     username: '',
     email: '',
@@ -66,6 +67,8 @@ const Login: React.FC = () => {
         if (data) {
           handleClick();
           localStorage.setItem('isAuth', 'true');
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('email', userInfo.email);
           setInterval(() => {
             Navigate("/home");
           },1000)

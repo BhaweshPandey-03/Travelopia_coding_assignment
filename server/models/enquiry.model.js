@@ -7,9 +7,9 @@ const enquirySchema = new mongoose.Schema({
   destination: { type: String, required: true },
   interest: { type: String, required: true },
   travelers: { type: String, required: true },
-  budget: { type: Number, required: true },
-  duration: { type: Number, required: true },
-  date: { type: Date, required: true },
+  budget: { type: String, required: true },
+  duration: { type: String, required: true },
+  date: { type: String, required: true },
   notes: { type: String },
   userId: { type: String }
 }, { timestamps: true, versionKey: false });
