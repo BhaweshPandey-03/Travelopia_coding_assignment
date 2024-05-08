@@ -30,11 +30,13 @@
 }
 .main_info h1 {
    font-size: 48px;
-   color: rgb(0, 0, 0);
+   color: rgb(206, 163, 33);
+   font-family: robotic;
    font-weight: 1000;
 }
 .main_info h2 {
    font-size: 28px;
-   color: rgb(0, 0, 0);
+   color: rgb(182, 181, 182);
+   font-family: robotic;
    font-weight: bold;
 }

@@ -6,9 +6,12 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    color: #444;
+    color: rgb(89, 78, 68);
   }
-  
+  .footer h2 {
+    color: rgb(133, 89, 35);
+  }
+
   .footer hr {
     border-color: #ddd;
   }
@@ -49,14 +52,16 @@
   .contact td {
     padding: 8px 0;
     font-size: 14px;
+
   }
   
   .contact th {
-    color: #007bff;
+    color: rgb(133, 89, 35);
+    font-size: large;
   }
   
   .contact td {
-    color: #444;
+    color: rgb(89, 78, 68);
   }
   
   .getUs {
@@ -66,6 +71,7 @@
   
   .getUs h5 {
     font-size: 18px;
+    color: rgb(133, 89, 35);
     margin-bottom: 10px;
   }
   
@@ -91,12 +97,36 @@
   }
   
   .box .social-icon {
-    font-size: 20px;
+    font-size: 34px;
     margin: 0 5px;
-    color: #007bff;
+    color: rgb(133, 89, 35);
+  }
+  .box {
+    display: flex;
+    justify-content: center;
+    gap :20px;
+  }
+  .box .social-icon:hover {
+    color: rgb(133, 89, 35);
   }
   
-  .box .social-icon:hover {
-    color: #0056b3;
+  .contact table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .contact th,
+  .contact td {
+    padding: 8px;
+    text-align: left;
+    /* border-bottom: 1px solid #ddd; */
+  }
+  
+  .contact th {
+    background-color: #f2f2f2;
+  }
+  
+  .contact tr:hover {
+    background-color: #f2f2f2;
   }
   
