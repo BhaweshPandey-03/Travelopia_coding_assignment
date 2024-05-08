@@ -39,16 +39,17 @@ export default function Navbar(props: Props) {
     if (item === 'Login') {
         console.log("login", event);
         Navigate('/login')
-        
+        return;
     } else if(item === 'About') {
         console.log("about");
         Navigate("/about")
-        
+        return;
     } else if(item === 'Home') {
         console.log("home");
         Navigate("/home")
+        return;
     } else {
-        console.log("else");
+       return;
     }
   }
 
