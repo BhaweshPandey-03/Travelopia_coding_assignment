@@ -1,0 +1,102 @@
+/* tripPlanner.css */
+
+.footer {
+    margin-top: -90px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #444;
+  }
+  
+  .footer hr {
+    border-color: #ddd;
+  }
+  
+  .foot_one {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .about {
+    flex: 1;
+    max-width: 40%;
+    margin-bottom: 20px;
+  }
+  
+  .about h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .about h6 {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .contact {
+    flex: 1;
+    max-width: 50%;
+  }
+  
+  .contact table {
+    width: 100%;
+  }
+  
+  .contact th,
+  .contact td {
+    padding: 8px 0;
+    font-size: 14px;
+  }
+  
+  .contact th {
+    color: #007bff;
+  }
+  
+  .contact td {
+    color: #444;
+  }
+  
+  .getUs {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .getUs h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .google_play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .google_play img {
+    width: 150px;
+    margin: 0 10px;
+  }
+  
+  .credit {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .credit_tag {
+    color: #888;
+  }
+  
+  .box .social-icon {
+    font-size: 20px;
+    margin: 0 5px;
+    color: #007bff;
+  }
+  
+  .box .social-icon:hover {
+    color: #0056b3;
+  }
+  
