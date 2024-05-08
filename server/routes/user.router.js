@@ -29,7 +29,7 @@ userRouter.post("/login", async (req, res) => {
     if (user) {
       bcrypt.compare(password, user.password, async (err, result) => {
         if (result) {
-          let token = jwt.sign({ foo: "bar" }, process.env.token);
+          let token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
           res.status(200).json({ message: "user login successful", token, username: user.username, email: user.email });
         } else {
           res.status(400).json({ message: "please check email or password" });
@@ -44,7 +44,7 @@ userRouter.post("/login", async (req, res) => {
 });
 
 userRouter.get("/logout", async (req, res) => {
-  const token = req.headers.authorization?.split(" ")[1];
+  const token = req.headers.authorization?.split(" ")[0];
   try {
     const logout = new BlacklistModel({ token: token });
     await logout.save();

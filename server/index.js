@@ -2,17 +2,14 @@ const express = require("express");
 const cors = require("cors");
 const connection = require("./config/db");
 const userRouter = require("./routes/user.router");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
 const jwt = require("jsonwebtoken");
-const aiRouter = require("./routes/ai.route");
-const emailRouter = require("./routes/email.route");
+const enquiryRouter = require("./routes/enquiry");
 require("dotenv").config();
 const app = express();
 
 app.use(express.json(), cors());
 app.use("/", userRouter);
-app.use("/", aiRouter);
-app.use("/", emailRouter);
+app.use("/", enquiryRouter)
 
 app.get("/", (req, res) => {
   res.status(200).json("hello from server");
@@ -26,3 +23,18 @@ app.listen(4500, async () => {
     console.log(error);
   }
 });
+
+
+
+// {
+//   "username": "Bhawesh",
+//   "email":"Bhawesh@gmail.com",
+//   "destination": "Goa",
+//   "interest": "beach",
+//   "travelers": "3",
+//   "budget": 2333,
+//   "duration": 2,
+//   "date": "2024/05/12",
+//   "notes": "None",
+//   "userId": "cjnik112"
+// }

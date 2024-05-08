@@ -26,3 +26,5 @@ enquiryRouter.get("/enquiry", auth, access("admin"), async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
+module.exports = enquiryRouter;
