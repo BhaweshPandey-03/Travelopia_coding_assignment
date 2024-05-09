@@ -118,6 +118,7 @@ const Admin: React.FC = () => {
               </Grid>
             ))}
           </Grid>
+          <div className="paginationA">
           <Pagination
             count={Math.ceil(enquiries.length / enquiriesPerPage)}
             page={currentPage}
@@ -127,6 +128,7 @@ const Admin: React.FC = () => {
               paginate(page)}}
             style={{ textAlign: 'center', marginTop: '20px' }}
           />
+          </div>
         </>
       )}
     </section>
