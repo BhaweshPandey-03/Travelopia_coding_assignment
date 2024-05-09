@@ -15,7 +15,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import "../styles/navbar.css"
-import { EventAvailableRounded } from '@mui/icons-material';
+// import { EventAvailableRounded } from '@mui/icons-material';
 
 interface Props {
   /**
@@ -36,34 +36,34 @@ export default function Navbar(props: Props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const handleNavbarClick = (event: React.MouseEvent<HTMLButtonElement>, item: string ) => {
-    if (item === 'Login') {
-        console.log("login", event);
-        Navigate('/login')
-        return;
-    }
-    if(item === 'About') {
-        console.log("about");
-        Navigate("/about")
-        return;
-    }
-     if(item === 'Home') {
-        console.log("home");
-        Navigate("/home")
-        return;
-    } 
-  }
+  // const handleNavbarClick = (event: React.MouseEvent<HTMLButtonElement>, item: string ) => {
+  //   if (item === 'Login') {
+  //       console.log("login", event);
+  //       Navigate('/login')
+  //       return;
+  //   }
+  //   if(item === 'About') {
+  //       console.log("about");
+  //       Navigate("/about")
+  //       return;
+  //   }
+  //    if(item === 'Home') {
+  //       console.log("home");
+  //       Navigate("/home")
+  //       return;
+  //   } 
+  // }
 
   const handleNavbarClickHome = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     console.log("home", event);
     Navigate("/home")
   }
   const handleNavbarClickAbout = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log("home", event);
+    console.log("about", event);
     Navigate("/about")
   }
   const handleNavbarClickLogin = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log("home", event);
+    console.log("login", event);
     Navigate("/login")
   }
 

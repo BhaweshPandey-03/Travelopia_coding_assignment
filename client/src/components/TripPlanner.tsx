@@ -159,7 +159,8 @@ const TripPlanner: React.FC = () => {
               <option value="Beach">Beach</option>
               <option value="Mountain">Mountain</option>
               <option value="City">City</option>
-              {/* Add more interests as needed */}
+              <option value="Nature">Nature</option>
+              <option value="Other">Other</option>
             </select>
 
             <select
@@ -195,7 +196,7 @@ const TripPlanner: React.FC = () => {
               <option value="$2001-$2500">$2001 - $2500</option>
               <option value="$2501-$3000">$2501 - $3000</option>
               <option value="$2501-$3000">more then $3000</option>
-              {/* Add more budget options as needed */}
+              
             </select>
 
             <button type="submit" className="btn">
@@ -241,7 +242,6 @@ const TripPlanner: React.FC = () => {
           </form>
         </div>
       )}
-      {/* Toast Notifications */}
       <Snackbar
         open={toastOpen}
         autoHideDuration={2000}

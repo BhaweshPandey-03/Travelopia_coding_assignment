@@ -47,7 +47,7 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true); // Show loader while requesting
+    setLoading(true); 
     try {
       if (isSignUp) {
         const res = await axios.post(`${URL}/signup`, userInfo); 
@@ -78,19 +78,19 @@ const Login: React.FC = () => {
           console.log('Login successful');
 
         } else {
-          setErrorToastOpen(true); // Show error toast
+          setErrorToastOpen(true); 
           console.log('Invalid credentials');
         }
       }
 
       setInterval(() => {
         setOpen(false)
-        setLoading(false); // Hide loader
+        setLoading(false); 
       }, 2000)
     } catch (error) {
       console.error('Error:', error);
-      setErrorToastOpen(true); // Show error toast on error
-      setLoading(false); // Hide loader on error
+      setErrorToastOpen(true); 
+      setLoading(false); 
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { RiAdminFill } from 'react-icons/ri'; // Assuming RiAdminFill is the icon component
+import { RiAdminFill } from 'react-icons/ri'; 
 import { useNavigate } from 'react-router-dom';
 import "../styles/home.css";
 
