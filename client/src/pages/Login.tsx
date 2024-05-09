@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import axios from 'axios'; 
 import '../styles/login.css'; 
 import { useNavigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress'; // Import CircularProgress
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 interface UserInfo {
   username: string;
   email: string;
   password: string;
 }
-// import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 
 const Login: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false); // State for loader
 
   const handleClick = () => {
     setOpen(true);
@@ -28,7 +29,6 @@ const Login: React.FC = () => {
   };
 
   const URL = 'https://travelopia-coding-assignment-3.onrender.com'; 
-  // const URL = 'http://localhost:4500'; 
   const [userInfo, setUserInfo] = useState<UserInfo>({
     username: '',
     email: '',
@@ -45,6 +45,7 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true); // Show loader while requesting
     try {
       if (isSignUp) {
         const res = await axios.post(`${URL}/signup`, userInfo); 
@@ -52,7 +53,7 @@ const Login: React.FC = () => {
         if(res){
           setIsSignUp(false);
           handleClick();
-        }else {
+        } else {
           alert('Sign up failed');
         }
         console.log('User signed up:', userInfo);
@@ -71,7 +72,7 @@ const Login: React.FC = () => {
           localStorage.setItem('email', userInfo.email);
           setInterval(() => {
             Navigate("/home");
-          },1000)
+          }, 1000)
           console.log('Login successful');
 
         } else {
@@ -82,16 +83,12 @@ const Login: React.FC = () => {
 
       setInterval(() => {
         setOpen(false)
-      },2000)
+        setLoading(false); // Hide loader
+      }, 2000)
     } catch (error) {
       console.error('Error:', error);
+      setLoading(false); // Hide loader on error
     }
-
-    // setUserInfo({
-    //   username: '',
-    //   email: '',
-    //   password: '',
-    // });
   };
 
   return (
@@ -126,39 +123,30 @@ const Login: React.FC = () => {
           />
         </div>
         <div className="form-group">
-          <button  type="submit">{isSignUp ? 'Sign up' : 'Log in'}</button>
+          <button  type="submit" disabled={loading}>
+            {loading ? <CircularProgress size={24} /> : (isSignUp ? 'Sign up' : 'Log in')}
+          </button>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-         {isSignUp ? 'Sign up' : 'Log in'}Successfull!!
-        </Alert>
-      </Snackbar>
-      {/* <Snackbar open={open2} autoHideDuration={6000} onClose={handleClose2}>
-        <Alert
-          onClose={handleClose2}
-          severity="success"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-         log In Successfull!!
-        </Alert>
-      </Snackbar> */}
+            <Alert
+              onClose={handleClose}
+              severity="success"
+              variant="filled"
+              sx={{ width: '100%' }}
+            >
+              {isSignUp ? 'Sign up' : 'Log in'} Successfull!!
+            </Alert>
+          </Snackbar>
         </div>
       </form>
       <p>
         {isSignUp
           ? 'Already have an account?'
           : 'Don\'t have an account yet?'}
-        <button  onClick={() =>{
-        
-          setIsSignUp(!isSignUp)}}>
+        <button  onClick={() => {
+          setIsSignUp(!isSignUp)
+        }}>
           {isSignUp ? 'Log in' : 'Sign up'}
         </button>
-       
       </p>
     </div>
    </div>
