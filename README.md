@@ -69,7 +69,7 @@ npm run server
 ## Admin credentials
 ```
 Email: admin@travelopia.com
-Password: admin123
+Password: admin
 
 ## Technology Stack
 - Frontend: React.js, Material UI
