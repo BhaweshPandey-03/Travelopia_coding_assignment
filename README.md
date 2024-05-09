@@ -27,7 +27,7 @@ Travelopia_coding_assignment/<br>
     |        └─ setupTests.tsx<br>
     ├─ .env<br>
     |─ .gitignore<br>
-    ├─ package-lock.json<br>
+    └─  package-lock.json<br>
             └─ package.json<br>
 ```
 
