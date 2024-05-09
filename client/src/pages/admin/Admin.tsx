@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { CircularProgress, Grid, Card, CardContent, Typography, Pagination } from '@mui/material';
-
+import {  Grid, Card, CardContent, Typography, Pagination, Skeleton } from '@mui/material';
+import "../../styles/admin.css";
 
 interface Enquiry {
   _id: string;
@@ -59,6 +59,9 @@ const Admin: React.FC = () => {
 
   return (
     <section className='enquiries-section'>
+      <div className='admin-banner'>
+      {/* <img src="https://antongorlin.com/wp-content/uploads/ngg_featured/4k-wallpapers-nature-trees.jpg" alt="Banner" className="banner-image" /> */}
+      </div>
       <div className='enquiry-banner' style={{ backgroundColor: 'rgb(133, 89, 35)' }}>
         <div className="overlay">
           <div className="total-requests" style={{ color: 'white' }}>
@@ -67,9 +70,17 @@ const Admin: React.FC = () => {
         </div>
       </div>
       {loading ? (
-        <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: '80vh' }}>
-          <CircularProgress size={80} />
-        </div>
+        <Grid container spacing={3} justifyContent="center">
+          {[...Array(8)].map((_, index) => (
+            <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
+              <Card variant="outlined" className='enquiry-card' style={{ backgroundColor: 'rgb(255, 255, 255)', color: 'rgb(133, 89, 35)' }}>
+                <CardContent>
+                  <Skeleton animation="wave" variant="rectangular" height={200} />
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
       ) : (
         <>
           <Typography variant="h2" className='enquiries-title' style={{ color: 'rgb(133, 89, 35)' }}>Enquiries</Typography>

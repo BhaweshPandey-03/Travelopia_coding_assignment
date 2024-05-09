@@ -15,6 +15,7 @@ interface UserInfo {
 const Login: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false); // State for loader
+  const [error, setError] = useState<string>(''); // State for error message
 
   const handleClick = () => {
     setOpen(true);
@@ -45,7 +46,7 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true); // Show loader while requesting
+    setLoading(true); 
     try {
       if (isSignUp) {
         const res = await axios.post(`${URL}/signup`, userInfo); 
@@ -54,7 +55,7 @@ const Login: React.FC = () => {
           setIsSignUp(false);
           handleClick();
         } else {
-          alert('Sign up failed');
+          setError('Sign up failed');
         }
         console.log('User signed up:', userInfo);
       } else {
@@ -76,18 +77,24 @@ const Login: React.FC = () => {
           console.log('Login successful');
 
         } else {
-          alert('Login failed, Try Again');
+          setError('Login failed, Try Again');
           console.log('Invalid credentials');
         }
       }
 
-      setInterval(() => {
-        setOpen(false)
-        setLoading(false); // Hide loader
-      }, 2000)
+      setOpen(true);
+      setLoading(false); 
+      setTimeout(() => {
+        setOpen(false); 
+      }, 6000);
     } catch (error) {
       console.error('Error:', error);
-      setLoading(false); // Hide loader on error
+      setError('Wrong credentials. Please try again!');
+      setOpen(true); 
+      setLoading(false); 
+      setTimeout(() => {
+        setOpen(false); 
+      }, 6000);
     }
   };
 
@@ -129,11 +136,11 @@ const Login: React.FC = () => {
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert
               onClose={handleClose}
-              severity="success"
+              severity="error"
               variant="filled"
               sx={{ width: '100%' }}
             >
-              {isSignUp ? 'Sign up' : 'Log in'} Successfull!!
+              {error}
             </Alert>
           </Snackbar>
         </div>

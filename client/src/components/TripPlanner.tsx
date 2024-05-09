@@ -1,95 +1,116 @@
-import React, { useState } from 'react';
-import '../styles/tripPlanner.css'; // Import CSS file
-import axios from 'axios';
-// import dotenv from 'dotenv';
-// dotenv.config();
+import React, { useState } from "react";
+import "../styles/tripPlanner.css"; // Import CSS file
+import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress"; // Import CircularProgress
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+
 const TripPlanner: React.FC = () => {
-  const URL = 'https://travelopia-coding-assignment-3.onrender.com'; 
+  const URL = "https://travelopia-coding-assignment-3.onrender.com";
   // const URL = 'http://localhost:4500';
   const [tripDetails, setTripDetails] = useState({
-    destination: '',
-    interest: '',
-    travelers: '',
+    destination: "",
+    interest: "",
+    travelers: "",
     budget: "",
   });
 
   const [tripPreferences, setTripPreferences] = useState({
-    duration: '',
-    date: '',
-    notes: '',
+    duration: "",
+    date: "",
+    notes: "",
   });
 
-
   const [tripDetailsSubmitted, setTripDetailsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false); // State for loader
+  const [toastOpen, setToastOpen] = useState(false); // State for toast notification
 
-  const handleTripDetailsChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleTripDetailsChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setTripDetails(prevState => ({
+    setTripDetails((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
+
   const getCurrentDate = () => {
     const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
     const yyyy = today.getFullYear();
     return `${yyyy}-${mm}-${dd}`;
   };
-  const handleTripDetailsSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleTripDetailsSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+    // setLoading(true); // Show loader while requesting
     // Handle submitting trip details
-    console.log('Trip Details Submitted:', tripDetails);
+    console.log("Trip Details Submitted:", tripDetails);
     setTripDetailsSubmitted(true);
   };
 
-  const handleTripPreferencesChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleTripPreferencesChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setTripPreferences(prevState => ({
+    setTripPreferences((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
-  const handleTripPreferencesSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleTripPreferencesSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
-    // const user= await userDetails();
+    setLoading(true); // Show loader while requesting
     try {
       const data = {
-        email: localStorage.getItem('email'),
+        email: localStorage.getItem("email"),
         destination: tripDetails.destination,
         interest: tripDetails.interest,
         travelers: tripDetails.travelers,
         budget: tripDetails.budget,
         duration: tripPreferences.duration,
         date: tripPreferences.date,
-        notes: tripPreferences.notes
-      }
+        notes: tripPreferences.notes,
+      };
       console.log(data);
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       console.log(token);
-      
+
       // Handle submitting trip preferences
-      if(token) {
-  
-        const res = await axios.post(`${URL}/enquiry`, data, { headers: { Authorization: token } });
+      if (token) {
+        const res = await axios.post(`${URL}/enquiry`, data, {
+          headers: { Authorization: token },
+        });
         if (res) {
           console.log(res.data);
-          
-          alert("Trip Preferences Submitted");
+          setToastOpen(true); // Show toast notification
+          setTimeout(() => {
+            setToastOpen(false); // Hide toast notification after some time
+          }, 2000);
         }
-    
-        setTripPreferences({ duration: '', date: '', notes: '' });
-        setTripDetails({ destination: '', interest: '', travelers: '', budget: "" });
+        setTripPreferences({ duration: "", date: "", notes: "" });
+        setTripDetails({
+          destination: "",
+          interest: "",
+          travelers: "",
+          budget: "",
+        });
         setTripDetailsSubmitted(false);
-        console.log('Trip Preferences Submitted:', tripPreferences);
+        setLoading(false); // Hide loader
+        console.log("Trip Preferences Submitted:", tripPreferences);
       } else {
         console.log("no token");
-        
       }
-  
     } catch (error) {
       console.log(error);
-      
+      setLoading(false); // Hide loader on error
     }
   };
 
@@ -97,17 +118,33 @@ const TripPlanner: React.FC = () => {
     <div className="containerTP">
       {!tripDetailsSubmitted ? (
         <div className="form-section">
-          {/* <h2>Section 1: Trip Details</h2> */}
           <form className="formTP" onSubmit={handleTripDetailsSubmit}>
-            <select id="destination" name="destination" value={tripDetails.destination} onChange={handleTripDetailsChange} required>
+            <select
+              id="destination"
+              name="destination"
+              value={tripDetails.destination}
+              onChange={handleTripDetailsChange}
+              required
+            >
               <option value="">Where do you want to go?</option>
               <option value="USA">USA</option>
               <option value="Canada">Canada</option>
               <option value="UK">UK</option>
-              {/* Add more countries as needed */}
+              <option value="Australia">Australia</option>
+              <option value="France">France</option>
+              <option value="Germany">Germany</option>
+              <option value="Italy">Italy</option>
+              <option value="Spain">Spain</option>
+              <option value="Japan">Japan</option>
             </select>
 
-            <select id="interest" name="interest" value={tripDetails.interest} onChange={handleTripDetailsChange} required>
+            <select
+              id="interest"
+              name="interest"
+              value={tripDetails.interest}
+              onChange={handleTripDetailsChange}
+              required
+            >
               <option value="">Your Interest</option>
               <option value="Beach">Beach</option>
               <option value="Mountain">Mountain</option>
@@ -115,7 +152,13 @@ const TripPlanner: React.FC = () => {
               {/* Add more interests as needed */}
             </select>
 
-            <select id="travelers" name="travelers" value={tripDetails.travelers} onChange={handleTripDetailsChange} required>
+            <select
+              id="travelers"
+              name="travelers"
+              value={tripDetails.travelers}
+              onChange={handleTripDetailsChange}
+              required
+            >
               <option value="">Number of Travelers</option>
               <option value="1">1 traveler</option>
               <option value="2">2 travelers</option>
@@ -129,7 +172,13 @@ const TripPlanner: React.FC = () => {
               <option value="10">10 or more travelers</option>
             </select>
 
-            <select id="budget" name="budget" value={tripDetails.budget} onChange={handleTripDetailsChange} required>
+            <select
+              id="budget"
+              name="budget"
+              value={tripDetails.budget}
+              onChange={handleTripDetailsChange}
+              required
+            >
               <option value="">Budget per Person</option>
               <option value="$1000-$1500">$1000 - $1500</option>
               <option value="$1501-$2000">$1501 - $2000</option>
@@ -139,27 +188,60 @@ const TripPlanner: React.FC = () => {
               {/* Add more budget options as needed */}
             </select>
 
-            <button type="submit" className="btn">Create My Trip</button>
+            <button type="submit" className="btn">
+              {loading ? <CircularProgress size={24} /> : "Create My Trip"}
+            </button>
           </form>
         </div>
       ) : (
         <div className="form-section">
-          {/* <h2>Section 2: Trip Preferences</h2> */}
           <form className="formTP" onSubmit={handleTripPreferencesSubmit}>
-            <input type="Text" placeholder="Duration (days)" name="duration" value={tripPreferences.duration} onChange={handleTripPreferencesChange} required />
-            <input type="date" placeholder="When?" name="date" value={tripPreferences.date} onChange={handleTripPreferencesChange} min={getCurrentDate()} required />
-            <textarea placeholder="Any Notes or Special Requests?" name="notes"
-            //  value={tripPreferences.notes} 
-            // onChange={handleTripPreferencesChange}
+            <input
+              type="Text"
+              placeholder="Duration (days)"
+              name="duration"
+              value={tripPreferences.duration}
+              onChange={handleTripPreferencesChange}
+              required
+            />
+            <label
+              style={{ display: "block", paddingTop: "10px" }}
+              htmlFor="date"
+              className="date-label"
+            >
+              {!tripPreferences.date && "Enter date"}
+            </label>
+            <input
+              type="date"
+              name="date"
+              value={tripPreferences.date}
+              onChange={handleTripPreferencesChange}
+              min={getCurrentDate()}
+              required
+              className={tripPreferences.date ? "has-value" : ""}
+            />
+
+            <textarea
+              placeholder="Any Notes or Special Requests?"
+              name="notes"
             ></textarea>
-            <button type="submit" className="btn">Let's Go</button>
+            <button type="submit" className="btn">
+              {loading ? <CircularProgress size={24} /> : "Let's Go"}
+            </button>
           </form>
         </div>
       )}
+      {/* Toast Notification */}
+      <Snackbar
+        open={toastOpen}
+        autoHideDuration={2000}
+        onClose={() => setToastOpen(false)}
+      >
+        <Alert onClose={() => setToastOpen(false)} severity="success">
+          Trip Preferences Submitted!
+        </Alert>
+      </Snackbar>
     </div>
-
-
-
   );
 };
 

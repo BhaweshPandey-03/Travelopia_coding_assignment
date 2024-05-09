@@ -1,6 +1,7 @@
 import TripPlanner from '../components/TripPlanner';
 import video from '../assets/home_video.mp4';
 import '../styles/home.css';
+import '@fontsource/roboto/700.css';
 import Footer from '../components/Footer';
 
 const Home = () => {

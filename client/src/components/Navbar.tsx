@@ -35,7 +35,7 @@ export default function Navbar(props: Props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  const handleNavbarClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, item: string ) => {
+  const handleNavbarClick = (event: React.MouseEvent<HTMLButtonElement>, item: string ) => {
     if (item === 'Login') {
         console.log("login", event);
         Navigate('/login')

@@ -4,7 +4,6 @@
     height: 100vh;
     overflow: hidden;
 } */
-
 .video-background {
     position: absolute;
     top: 0;
@@ -31,13 +30,13 @@
 .main_info h1 {
    font-size: 48px;
    color: rgba(255, 255, 255, 0.633);
-   font-family: robotic;
+   /* font-family: ; */
    font-weight: 1000;
 }
 .main_info h2 {
    font-size: 28px;
    color: rgb(182, 181, 182);
-   font-family: robotic;
+   /* font-family: roboto; */
    font-weight: bold;
 }
 
@@ -58,6 +57,7 @@
     z-index: 10000;
     /* transform: translateX(-50%); */
     overflow: hidden;
+    cursor: pointer;
 }
 
 #btn0001:hover {
