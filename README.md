@@ -15,7 +15,7 @@ Travelopia_coding_assignment/<br>
 │  ├─ index.js<br>
 │  └─ package.json<br>
 └─ client/<br>
-|&nbsp;&nbsp;&nbsp;├─ public/<br>
+    ├─ public/<br>
 |&nbsp;&nbsp;&nbsp;├─ src/<br>
 |&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ assets/<br>
 |&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ components/<br>
