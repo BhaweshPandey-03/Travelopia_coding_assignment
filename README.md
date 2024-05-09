@@ -1,7 +1,7 @@
 # Travelopia
 
 ## Introduction
-Travelopia: our ultimate destination for discovering and planning unforgettable travel experiences. Whether you're a seasoned globetrotter or a first-time adventurer, our website is designed to inspire and assist you in every step of your journey.
+Travelopia: Our ultimate destination for discovering and planning unforgettable travel experiences. Whether you're a seasoned globetrotter or a first-time adventurer, our website is designed to inspire and assist you in every step of your journey.
 ## Project Type
 Fullstack ( MERN )
 
