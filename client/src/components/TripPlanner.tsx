@@ -24,6 +24,7 @@ const TripPlanner: React.FC = () => {
   const [tripDetailsSubmitted, setTripDetailsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false); // State for loader
   const [toastOpen, setToastOpen] = useState(false); // State for toast notification
+  const [adminErrorToastOpen, setAdminErrorToastOpen] = useState(false); // State for admin error toast notification
 
   const handleTripDetailsChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -49,8 +50,17 @@ const TripPlanner: React.FC = () => {
     e.preventDefault();
     // setLoading(true); // Show loader while requesting
     // Handle submitting trip details
-    console.log("Trip Details Submitted:", tripDetails);
-    setTripDetailsSubmitted(true);
+  
+    const mail = localStorage.getItem("email");
+    if(mail !== 'admin@travelopia.com'){
+      console.log("Trip Details Submitted:", tripDetails);
+      setTripDetailsSubmitted(true);
+    } else {
+      console.log("Admin can't submit trip details");
+      setAdminErrorToastOpen(true); // Show admin error toast
+    }
+
+
   };
 
   const handleTripPreferencesChange = (
@@ -231,7 +241,7 @@ const TripPlanner: React.FC = () => {
           </form>
         </div>
       )}
-      {/* Toast Notification */}
+      {/* Toast Notifications */}
       <Snackbar
         open={toastOpen}
         autoHideDuration={2000}
@@ -239,6 +249,15 @@ const TripPlanner: React.FC = () => {
       >
         <Alert onClose={() => setToastOpen(false)} severity="success">
           Trip Preferences Submitted!
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={adminErrorToastOpen}
+        autoHideDuration={2000}
+        onClose={() => setAdminErrorToastOpen(false)}
+      >
+        <Alert onClose={() => setAdminErrorToastOpen(false)} severity="error">
+          Admin can't submit trip details.
         </Alert>
       </Snackbar>
     </div>
