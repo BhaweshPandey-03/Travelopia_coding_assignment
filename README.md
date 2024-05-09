@@ -46,13 +46,19 @@ Frontend: https://travelopia-coding-assignment-a1in.vercel.app/
 The development focused on creating an intuitive and secure platform that emphasizes community building among food enthusiasts. Assumptions include a high engagement rate based on quality content and user-friendly features.
 
 # Navbar
+![Screenshot 2024-05-09 122811](https://github.com/BhaweshPandey-03/Travelopia_coding_assignment/assets/150121687/4fe89e02-c203-4d4c-a002-bed148f47930)
 
 # SignIn / SignUp
+![Screenshot 2024-05-09 133153](https://github.com/BhaweshPandey-03/Travelopia_coding_assignment/assets/150121687/0f1913a1-23fd-403f-a54c-72f3518b6462)
 
 # Mid-Section
+![Screenshot 2024-05-09 122836](https://github.com/BhaweshPandey-03/Travelopia_coding_assignment/assets/150121687/6c1d2ba7-3785-43af-9dc2-301af8c0f857)
 
+# Enquiry-Section
+![Screenshot 2024-05-09 133240](https://github.com/BhaweshPandey-03/Travelopia_coding_assignment/assets/150121687/fbf8726d-6511-4a23-9031-9b8555795728)
 
 # Footer
+![Screenshot 2024-05-09 133450](https://github.com/BhaweshPandey-03/Travelopia_coding_assignment/assets/150121687/579718f8-38a8-40ba-89f6-43e45c66cdfb)
 
 
 ## Installation & Getting Started
