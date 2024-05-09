@@ -1,7 +1,7 @@
 # Travelopia
 
 ## Introduction
-Travelopia: Travelopia: Travelopia Holdings Limited is a registered company in England (Company No 5934241). Registered Office: Origin One, 108 High Street, Crawley, West Sussex RH10 1BD.
+Travelopia: our ultimate destination for discovering and planning unforgettable travel experiences. Whether you're a seasoned globetrotter or a first-time adventurer, our website is designed to inspire and assist you in every step of your journey.
 ## Project Type
 Fullstack ( MERN )
 
