@@ -16,19 +16,19 @@ Travelopia_coding_assignment/<br>
 │  └─ package.json<br>
 └─ client/<br>
     ├─ public/<br>
-|&nbsp;&nbsp;&nbsp;├─ src/<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ assets/<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ components/<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ pages/<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ route/<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ App.tsx<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ index.tsx<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├─ reportWebVitals.js<br>
-|&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└─ setupTests.tsx<br>
-|&nbsp;&nbsp;&nbsp;├─ .env<br>
-|&nbsp;&nbsp;&nbsp;├─ .gitignore<br>
-|&nbsp;&nbsp;&nbsp;├─ package-lock.json<br>
-|&nbsp;&nbsp;&nbsp;└─ package.json<br>
+    ├─ src/<br>
+    ├─ assets/<br>
+    ├─ components/<br>
+    ├─ pages/<br>
+    ├─ route/<br>
+    ├─ App.tsx<br>
+    ├─ index.tsx<br>
+    ├─ reportWebVitals.js<br>
+    |        └─ setupTests.tsx<br>
+    ├─ .env<br>
+    |─ .gitignore<br>
+    ├─ package-lock.json<br>
+            └─ package.json<br>
 ```
 
 ## Deplolyed App
