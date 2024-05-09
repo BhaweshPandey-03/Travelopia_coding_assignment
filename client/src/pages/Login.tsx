@@ -25,7 +25,8 @@ const Login: React.FC = () => {
     if (reason === 'clickaway') {
       return;
     }
-
+    console.log(event);
+    
     setOpen(false);
   };
 

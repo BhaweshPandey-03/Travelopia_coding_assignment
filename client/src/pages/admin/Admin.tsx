@@ -121,7 +121,10 @@ const Admin: React.FC = () => {
           <Pagination
             count={Math.ceil(enquiries.length / enquiriesPerPage)}
             page={currentPage}
-            onChange={(event, page) => paginate(page)}
+            onChange={(event, page) => {
+              console.log(event);
+              
+              paginate(page)}}
             style={{ textAlign: 'center', marginTop: '20px' }}
           />
         </>
