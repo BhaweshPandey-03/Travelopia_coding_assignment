@@ -72,8 +72,10 @@ const Login: React.FC = () => {
           localStorage.setItem('isAuth', 'true');
           localStorage.setItem('token', data.token);
           localStorage.setItem('email', userInfo.email);
-          setInterval(() => {
+          setTimeout(() => {
             Navigate("/home");
+            console.log("from login to home");
+            
           }, 1000)
           console.log('Login successful');
 

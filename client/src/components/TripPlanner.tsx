@@ -7,7 +7,7 @@ import Alert from "@mui/material/Alert";
 
 const TripPlanner: React.FC = () => {
   const URL = "https://travelopia-coding-assignment-3.onrender.com";
-  // const URL = 'http://localhost:4500';
+;
   const [tripDetails, setTripDetails] = useState({
     destination: "",
     interest: "",
@@ -22,9 +22,9 @@ const TripPlanner: React.FC = () => {
   });
 
   const [tripDetailsSubmitted, setTripDetailsSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false); // State for loader
-  const [toastOpen, setToastOpen] = useState(false); // State for toast notification
-  const [adminErrorToastOpen, setAdminErrorToastOpen] = useState(false); // State for admin error toast notification
+  const [loading, setLoading] = useState(false);
+  const [toastOpen, setToastOpen] = useState(false); 
+  const [adminErrorToastOpen, setAdminErrorToastOpen] = useState(false); 
 
   const handleTripDetailsChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -39,7 +39,7 @@ const TripPlanner: React.FC = () => {
   const getCurrentDate = () => {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); // January is 0!
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); 
     const yyyy = today.getFullYear();
     return `${yyyy}-${mm}-${dd}`;
   };
@@ -48,16 +48,14 @@ const TripPlanner: React.FC = () => {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    // setLoading(true); // Show loader while requesting
-    // Handle submitting trip details
-  
+   
     const mail = localStorage.getItem("email");
     if(mail !== 'admin@travelopia.com'){
       console.log("Trip Details Submitted:", tripDetails);
       setTripDetailsSubmitted(true);
     } else {
       console.log("Admin can't submit trip details");
-      setAdminErrorToastOpen(true); // Show admin error toast
+      setAdminErrorToastOpen(true); 
     }
 
 
@@ -77,7 +75,7 @@ const TripPlanner: React.FC = () => {
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    setLoading(true); // Show loader while requesting
+    setLoading(true);
     try {
       const data = {
         email: localStorage.getItem("email"),
@@ -93,16 +91,15 @@ const TripPlanner: React.FC = () => {
       const token = localStorage.getItem("token");
       console.log(token);
 
-      // Handle submitting trip preferences
       if (token) {
         const res = await axios.post(`${URL}/enquiry`, data, {
           headers: { Authorization: token },
         });
         if (res) {
           console.log(res.data);
-          setToastOpen(true); // Show toast notification
+          setToastOpen(true); 
           setTimeout(() => {
-            setToastOpen(false); // Hide toast notification after some time
+            setToastOpen(false); 
           }, 2000);
         }
         setTripPreferences({ duration: "", date: "", notes: "" });
@@ -113,14 +110,14 @@ const TripPlanner: React.FC = () => {
           budget: "",
         });
         setTripDetailsSubmitted(false);
-        setLoading(false); // Hide loader
+        setLoading(false);
         console.log("Trip Preferences Submitted:", tripPreferences);
       } else {
         console.log("no token");
       }
     } catch (error) {
       console.log(error);
-      setLoading(false); // Hide loader on error
+      setLoading(false); 
     }
   };
 

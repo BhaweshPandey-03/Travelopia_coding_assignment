@@ -26,7 +26,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Login'];
+
 
 export default function Navbar(props: Props) {
   const { window } = props;
@@ -36,35 +36,45 @@ export default function Navbar(props: Props) {
     setMobileOpen((prevState) => !prevState);
   };
 
-  // const handleNavbarClick = (event: React.MouseEvent<HTMLButtonElement>, item: string ) => {
-  //   if (item === 'Login') {
-  //       console.log("login", event);
-  //       Navigate('/login')
-  //       return;
-  //   }
-  //   if(item === 'About') {
-  //       console.log("about");
-  //       Navigate("/about")
-  //       return;
-  //   }
-  //    if(item === 'Home') {
-  //       console.log("home");
-  //       Navigate("/home")
-  //       return;
-  //   } 
-  // }
+  const [navItems, setNavItems] = React.useState<string[]>(['Home', 'About', 'Login']);
 
+
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      const isAuth = localStorage.getItem('isAuth') === 'true';
+      if(isAuth) {
+        setNavItems(['Home', 'About', 'Logout']);
+        return; 
+      }
+      setNavItems(['Home', 'About', 'Login']);
+  
+      console.log("setInterval", isAuth);
+      
+    }, 1000);
+  
+    return () => clearInterval(intervalId);
+  }, []); 
+  
   const handleNavbarClickHome = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     console.log("home", event);
-    Navigate("/home")
+    if(localStorage.getItem('isAuth') === 'true') Navigate("/home") 
+      else Navigate("/login")
   }
   const handleNavbarClickAbout = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     console.log("about", event);
     Navigate("/about")
   }
   const handleNavbarClickLogin = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    console.log("login", event);
-    Navigate("/login")
+    const val = navItems.includes('Logout');
+    if (val){
+      console.log("logout", event);
+      localStorage.clear();
+      setNavItems(['Home', 'About', 'Login']);
+      Navigate("/login")
+    } else {
+      console.log("login", event);
+      Navigate("/login")
+    }
   }
 
   const drawer = (
@@ -114,7 +124,7 @@ export default function Navbar(props: Props) {
                 ABOUT
               </Button>
               <Button style={{ fontWeight: 'bold'}}onClick={(event)=> handleNavbarClickLogin(event)}   sx={{ color: '#fff' }}>
-                LOGIN
+                {navItems[2]}
               </Button>
             {/* ))} */}
           </Box>

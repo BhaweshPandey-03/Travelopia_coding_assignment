@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { RiAdminFill } from 'react-icons/ri'; 
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import "../styles/home.css";
+import { RiAdminFill } from 'react-icons/ri';
 
 const AdminIcon: React.FC = () => {
     const Navigate = useNavigate();
     const [isAdmin, setIsAdmin] = useState(false);
-    const email = localStorage.getItem('email');
+    const checkIsAdmin = () => {
+        const email = localStorage.getItem('email');
+        setIsAdmin(email === "admin@travelopia.com");
+    };
 
     useEffect(() => {
-        if (email === "admin@travelopia.com") {
-            setIsAdmin(true);
-        }
-    }, [email]);
-  return (
-   <>
-    {isAdmin && (
-        <div className="overlay01">
-            <a className='admin' onClick={() => Navigate('/admin')}><RiAdminFill /></a>
-        </div>
-    )}
-   </>
-  );
-}
+        checkIsAdmin();
+        const intervalId = setInterval(checkIsAdmin, 500);
+        return () => clearInterval(intervalId);
+    }, []);
+
+    return (
+        <>
+            {isAdmin && (
+                <div className="overlay01">
+                    <a className='admin' onClick={() => Navigate('/admin')}><RiAdminFill /></a>
+                </div>
+            )}
+        </>
+    );
+};
 
 export default AdminIcon;
