@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import "../styles/navbar.css"
+import { EventAvailableRounded } from '@mui/icons-material';
 
 interface Props {
   /**
@@ -40,17 +41,30 @@ export default function Navbar(props: Props) {
         console.log("login", event);
         Navigate('/login')
         return;
-    } else if(item === 'About') {
+    }
+    if(item === 'About') {
         console.log("about");
         Navigate("/about")
         return;
-    } else if(item === 'Home') {
+    }
+     if(item === 'Home') {
         console.log("home");
         Navigate("/home")
         return;
-    } else {
-       return
-    }
+    } 
+  }
+
+  const handleNavbarClickHome = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log("home", event);
+    Navigate("/home")
+  }
+  const handleNavbarClickAbout = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log("home", event);
+    Navigate("/about")
+  }
+  const handleNavbarClickLogin = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log("home", event);
+    Navigate("/login")
   }
 
   const drawer = (
@@ -92,11 +106,17 @@ export default function Navbar(props: Props) {
       component="div"
       sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>Travelopia</Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button style={{ fontWeight: 'bold'}}onClick={(event)=> handleNavbarClick(event, item)}  key={item} sx={{ color: '#fff' }}>
-                {item }
+            {/* {navItems.map((item) => ( */}
+              <Button style={{ fontWeight: 'bold'}}onClick={(event)=> handleNavbarClickHome(event)} sx={{ color: '#fff' }}>
+                HOME
               </Button>
-            ))}
+              <Button style={{ fontWeight: 'bold'}}onClick={(event)=> handleNavbarClickAbout(event)}  sx={{ color: '#fff' }}>
+                ABOUT
+              </Button>
+              <Button style={{ fontWeight: 'bold'}}onClick={(event)=> handleNavbarClickLogin(event)}   sx={{ color: '#fff' }}>
+                LOGIN
+              </Button>
+            {/* ))} */}
           </Box>
         </Toolbar>
       </AppBar>
