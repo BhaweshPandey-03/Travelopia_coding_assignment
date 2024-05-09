@@ -15,7 +15,7 @@ interface UserInfo {
 const Login: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false); // State for loader
-  const [error, setError] = useState<string>(''); // State for error message
+  const [errorToastOpen, setErrorToastOpen] = useState(false); // State for error toast
 
   const handleClick = () => {
     setOpen(true);
@@ -25,8 +25,7 @@ const Login: React.FC = () => {
     if (reason === 'clickaway') {
       return;
     }
-    console.log(event);
-    
+
     setOpen(false);
   };
 
@@ -47,7 +46,7 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true); 
+    setLoading(true); // Show loader while requesting
     try {
       if (isSignUp) {
         const res = await axios.post(`${URL}/signup`, userInfo); 
@@ -56,7 +55,7 @@ const Login: React.FC = () => {
           setIsSignUp(false);
           handleClick();
         } else {
-          setError('Sign up failed');
+          alert('Sign up failed');
         }
         console.log('User signed up:', userInfo);
       } else {
@@ -78,24 +77,19 @@ const Login: React.FC = () => {
           console.log('Login successful');
 
         } else {
-          setError('Login failed, Try Again');
+          setErrorToastOpen(true); // Show error toast
           console.log('Invalid credentials');
         }
       }
 
-      setOpen(true);
-      setLoading(false); 
-      setTimeout(() => {
-        setOpen(false); 
-      }, 6000);
+      setInterval(() => {
+        setOpen(false)
+        setLoading(false); // Hide loader
+      }, 2000)
     } catch (error) {
       console.error('Error:', error);
-      setError('Wrong credentials. Please try again!');
-      setOpen(true); 
-      setLoading(false); 
-      setTimeout(() => {
-        setOpen(false); 
-      }, 6000);
+      setErrorToastOpen(true); // Show error toast on error
+      setLoading(false); // Hide loader on error
     }
   };
 
@@ -137,11 +131,25 @@ const Login: React.FC = () => {
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert
               onClose={handleClose}
+              severity="success"
+              variant="filled"
+              sx={{ width: '100%' }}
+            >
+              {isSignUp ? 'Sign up' : 'Log in'} Successfull!!
+            </Alert>
+          </Snackbar>
+          <Snackbar
+            open={errorToastOpen}
+            autoHideDuration={6000}
+            onClose={() => setErrorToastOpen(false)}
+          >
+            <Alert
+              onClose={() => setErrorToastOpen(false)}
               severity="error"
               variant="filled"
               sx={{ width: '100%' }}
             >
-              {error}
+              {isSignUp ? 'Sign up' : 'Log in'} failed, Try Again!
             </Alert>
           </Snackbar>
         </div>
