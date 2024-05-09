@@ -66,6 +66,11 @@ npm install
 npm run server
 ```
 
+## Admin credentials
+```
+Email: admin@travelopia.com
+Password: admin123
+
 ## Technology Stack
 - Frontend: React.js, Material UI
 - Backend: Node.js, Express.js
