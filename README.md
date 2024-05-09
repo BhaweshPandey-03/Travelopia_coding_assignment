@@ -6,6 +6,7 @@ Travelopia: Travelopia: Travelopia Holdings Limited is a registered company in E
 Fullstack ( MERN )
 
 ## Directory Structure
+```
 Travelopia_coding_assignment/<br>
 ├─ server/<br>
 │  ├─ config/<br>
@@ -28,8 +29,7 @@ Travelopia_coding_assignment/<br>
 |&nbsp;&nbsp;&nbsp;├─ .gitignore<br>
 |&nbsp;&nbsp;&nbsp;├─ package-lock.json<br>
 |&nbsp;&nbsp;&nbsp;└─ package.json<br>
-
-
+```
 
 ## Deplolyed App
 Frontend: https://travelopia-coding-assignment-a1in.vercel.app/
